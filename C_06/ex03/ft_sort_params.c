@@ -6,7 +6,7 @@
 /*   By: jinyoo <jinyoo@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 21:00:09 by jinyoo            #+#    #+#             */
-/*   Updated: 2021/04/07 23:55:35 by jinyoo           ###   ########.fr       */
+/*   Updated: 2021/04/08 00:00:22 by jinyoo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		ft_strcmp(char *s1, char *s2)
 	i = 0;
 	while (s1[i] && s2[i])
 	{
-		if(s1[i] != s2[i])
+		if (s1[i] != s2[i])
 			return (s1[i] - s2[i]);
 		i++;
 	}
@@ -28,9 +28,9 @@ int		ft_strcmp(char *s1, char *s2)
 
 void	ft_bubble_sort(int argc, char **argv)
 {
-	int i;
-	int j;
-	char *temp;
+	int		i;
+	int		j;
+	char	*temp;
 
 	i = 0;
 	while (i++ < argc)
@@ -38,7 +38,7 @@ void	ft_bubble_sort(int argc, char **argv)
 		j = 1;
 		while (++j < argc)
 		{
-			if(ft_strcmp(argv[j - 1], argv[j]) < 0)
+			if (ft_strcmp(argv[j - 1], argv[j]) < 0)
 			{
 				temp = argv[j - 1];
 				argv[j - 1] = argv[j];
@@ -58,7 +58,7 @@ int		main(int argc, char **argv)
 	while (argv[++i])
 	{
 		j = 0;
-		while(argv[i][j])
+		while (argv[i][j])
 			write(1, &argv[i][j++], 1);
 		write(1, "\n", 1);
 	}
