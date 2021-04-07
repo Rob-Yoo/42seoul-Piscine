@@ -1,9 +1,9 @@
 #include <stdio.h>
 
-int main()
+int main(void)
 {
-	char a[] = "hello";
-
-	printfft(a);
+	char *c = "abdabc";
+	++c;
+	printf("%s", c);
 	return (0);
 }

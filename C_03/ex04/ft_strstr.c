@@ -6,30 +6,42 @@
 /*   By: jinyoo <jinyoo@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 21:32:28 by jinyoo            #+#    #+#             */
-/*   Updated: 2021/04/07 02:04:35 by jinyoo           ###   ########.fr       */
+/*   Updated: 2021/04/07 14:59:37 by jinyoo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+
 char	*ft_strstr(char *str, char *to_find)
 {
-	char	*a;
-	int		i;
+	int tf_idx;
+	int str_idx;
+	int temp;
 
-	a = str;
-	i = 0;
+	str_idx = 0;
 	if (!*to_find)
 		return (str);
 	while (*str)
 	{
-		while (*to_find && a[i] == *to_find)
+		tf_idx = 0;
+		temp = str_idx;
+		while (to_find[tf_idx] && str[temp] == to_find[tf_idx])
 		{
-			i++;
-			to_find++;
+			tf_idx++;
+			temp++;
 		}
-		if (!*to_find)
+		if (to_find[tf_idx] == '\0')
 			return (str);
 		str++;
-		i++;
+		str_idx++;
 	}
+	return (0);
+}
+
+int main(void)
+{
+	char *c1 = "abdabc";
+	char *c2 = "abc";
+	printf("%s", ft_strstr(c1, c2));
 	return (0);
 }

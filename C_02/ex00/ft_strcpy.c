@@ -1,32 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jinyoo <jinyoo@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/01 21:31:35 by jinyoo            #+#    #+#             */
-/*   Updated: 2021/04/07 13:48:48 by jinyoo           ###   ########.fr       */
+/*   Created: 2021/03/31 21:51:34 by jinyoo            #+#    #+#             */
+/*   Updated: 2021/03/31 22:26:07 by jinyoo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_strncmp(char *s1, char *s2, unsigned int n)
+char	*ft_strcpy(char *dest, char *src)
 {
-	unsigned int i;
-
-	i = 0;
-	while (*s1 && *s2 && i < n)
-	{
-		if (*s1 != *s2)
-			return (*s1 - *s2);
-		i++;
-		s1++;
-		s2++;
-	}
-	if (i == n)
-	{
-		s1--;
-		s2--;
-	}
-	return (*s1 - *s2);
-}
+	 `
