@@ -6,7 +6,7 @@
 /*   By: jinyoo <jinyoo@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 20:28:31 by jinyoo            #+#    #+#             */
-/*   Updated: 2021/04/07 01:41:48 by jinyoo           ###   ########.fr       */
+/*   Updated: 2021/04/07 16:09:39 by jinyoo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,5 @@ void	ft_putnbr_base(int nbr, char *base)
 {
 	if (is_exception(base))
 		return ;
+
 }

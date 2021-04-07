@@ -6,14 +6,15 @@
 /*   By: jinyoo <jinyoo@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 20:28:19 by jinyoo            #+#    #+#             */
-/*   Updated: 2021/04/06 23:57:28 by jinyoo           ###   ########.fr       */
+/*   Updated: 2021/04/07 15:47:02 by jinyoo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int		is_space(char c)
 {
 	if (c == ' ' || c == '\n' || c == '\t' \
-			|| c == '\v')
+			|| c == '\v' || c == '\f' \
+			|| c == '\r')
 		return (1);
 	return (0);
 }
@@ -28,28 +29,21 @@ int		is_numeric(char c)
 int		ft_atoi(char *str)
 {
 	int num;
-	int cnt;
+	int sign;
 
 	num = 0;
-	cnt = 0;
-	while (*str)
+	sign = 1;
+	while (is_space(*str))
+		str++;
+	while (*str == '+' || *str == '-')
 	{
-		if (is_space(*str++))
-			continue ;
-		if (*str++ == '-')
-		{
-			cnt++;
-			continue ;
-		}
-		if (is_numeric(*str))
-		{
-			num *= 10;
-			num += *str++ - '0';
-		}
-		else
-			break ;
+		if (*(str++) == '-')
+			sign *= -1;
 	}
-	if (cnt % 2 != 0)
-		num *= -1;
+	while (is_numeric(*str))
+	{
+		num *= 10;
+		num += (sign * (*(str++) - '0'));
+	}
 	return (num);
 }
