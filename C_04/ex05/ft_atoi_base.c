@@ -6,35 +6,35 @@
 /*   By: jinyoo <jinyoo@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 18:13:05 by jinyoo            #+#    #+#             */
-/*   Updated: 2021/04/07 20:25:48 by jinyoo           ###   ########.fr       */
+/*   Updated: 2021/04/08 23:47:57 by jinyoo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int g_num = 0;
+#include <stdio.h>
 
-int		ft_strlen(char *base)
+int		is_space(char c)
 {
-	int len;
-
-	len = 0;
-	while (base[len])
-		len++;
-	return (len);
+	if (c == '\n' || c == '\t' || c == '\v' \
+			|| c == ' ' || c == '\r' \
+			|| c == '\f')
+		return (1);
+	return (0);
 }
 
 int		is_exception(char *base)
 {
 	int i;
+	int j;
 
 	i = 0;
-	if (*base == '\0')
-		return (1);
-	if (ft_strlen(base) == 1)
-		return (1);
 	while (base[i])
 	{
-		if (base[i] == base[i + 1])
-			return (1);
+		j = i + 1;
+		while (base[j])
+		{
+			if (base[i] == base[j++])
+				return (1);
+		}
 		i++;
 	}
 	i = 0;
@@ -42,65 +42,62 @@ int		is_exception(char *base)
 	{
 		if (base[i] == '+' || base[i] == '-')
 			return (1);
-		if (base[i] == ' ' || base[i] == '\n' || \
-				base[i] == '\t' || base[i] \
-				== '\v' || base[i] == '\r')
+		if (is_space(base[i]))
 			return (1);
 		i++;
 	}
 	return (0);
 }
 
-void	change_base(int num, int base_num, char *base)
+int		atoi_handler(char *str, char *base, int base_num)
 {
-	if (nbr / base_num == 0)
+	int idx;
+	int num;
+	int flag;
+
+	num = 0;
+	while (*str)
 	{
-		n += num - '0';	
-		return n;
+		flag = 0;
+		idx = 0;
+		while (base[idx])
+		{
+			if (base[idx] == *str)
+			{
+				flag = 1;
+				num *= base_num;
+				num += idx;
+				str++;
+			}
+			idx++;
+		}
+		if (flag == 0)
+			break ;
 	}
-	change_base(nbr / base_num, base_num, base); 
+	return (num);
 }
-
-int		base_handler(int num, char *base)
-{
-	int base_num;
-	int n;
-
-	n = 0;
-	base_num = ft_strlen(base);
-	if (num < 0)
-	{
-		change_base(-num / base_num, base_num, base);
-		write_base(-num % base_num, base);
-	}
-	else
-	{
-		change_base(num / base_num, base_num, base);
-		write_base(num % base_num, base);
-	}	
 
 int		ft_atoi_base(char *str, char *base)
 {
 	int num;
 	int sign;
+	int base_num;
 
 	num = 0;
 	sign = 1;
-	if (is_exception(base))
+	base_num = 0;
+	if (is_exception(base) || *base == 0)
 		return (0);
-	while (*str == ' ' || *str == '\n' || \
-			*str == '\t' || *str == \
-			'\v' || *str == '\r')
+	while (base[base_num])
+		base_num++;
+	if (base_num == 1)
+		return (0);
+	while (is_space(*str))
 		str++;
 	while (*str == '-' || *str == '+')
 	{
 		if (*(str++) == '-')
 			sign *= -1;
 	}
-	while (*str >= '0' && *str <= '9')
-	{
-		num *= 10;
-		num += sign * (*(str++) - '0');
-	}
-	return (base_handler(num, base));
+	return (sign * atoi_handler(str, base, base_num));
 }
