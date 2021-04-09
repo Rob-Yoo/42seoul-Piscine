@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jinyoo <jinyoo@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/02 20:18:54 by jinyoo            #+#    #+#             */
-/*   Updated: 2021/04/03 03:13:26 by jinyoo           ###   ########.fr       */
+/*   Created: 2021/04/08 11:58:30 by jinyoo            #+#    #+#             */
+/*   Updated: 2021/04/08 15:18:14 by jinyoo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-void	print_error(void);
-void	rush(char *views);
-int		is_exception(char *views);
-
-int		main(int argc, char **argv)
+int		ft_sqrt(int nb)
 {
-	if (argc != 2 || is_exception(argv[1]))
-	{
-		print_error();
+	long long i;
+
+	if (nb < 0)
 		return (0);
-	}
-	rush(argv[1]);
+	i = 1;
+	while (i * i < nb)
+		i++;
+	if (i * i == nb)
+		return (i);
 	return (0);
 }
